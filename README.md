@@ -8,6 +8,7 @@ Repositório com alguns projetos feitos em C para praticar.
 - Tabuada  
 - Multiplicação  
 - Soma de 0 a 100
+- Sistema de Notas
   
 ## Tecnologias
 - Linguagem C
