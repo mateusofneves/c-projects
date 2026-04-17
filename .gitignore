@@ -1,0 +1,14 @@
+# executáveis
+*.exe
+*.out
+
+# arquivos objeto (compilação)
+*.o
+
+# logs e temporários
+*.log
+*.tmp
+
+# arquivos do sistema
+.DS_Store
+Thumbs.db
