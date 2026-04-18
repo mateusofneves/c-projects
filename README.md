@@ -11,6 +11,7 @@ Repositório com alguns projetos feitos em C para praticar.
 - Sistema de notas
 - Calculadora de potência
 - Jogo da forca
+- Soma array
   
 ## Tecnologias
 - Linguagem C
