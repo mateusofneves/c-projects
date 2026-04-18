@@ -12,7 +12,6 @@ void chuta(char chutes[26], int tentativas) {
     scanf(" %c", &chute);
 
     chutes[tentativas] = chute;
-    (tentativas)++;
 }
 
 int main() {
@@ -51,6 +50,7 @@ int main() {
 
         //chamando a função de chute para ler o chute do usuário e armazenar no array de chutes
         chuta(chutes, tentativas);
+        tentativas++;
 
     } while (!acertou && !enforcou);
 
