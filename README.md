@@ -12,6 +12,7 @@ Repositório com alguns projetos feitos em C para praticar.
 - Calculadora de potência
 - Jogo da forca
 - Soma array
+- Soma com ponteiro 
   
 ## Tecnologias
 - Linguagem C
