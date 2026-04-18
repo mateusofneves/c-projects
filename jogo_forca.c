@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
+#include <time.h>
 #include "jogo_forca.h"
 
 //variáveis globais
@@ -31,7 +33,9 @@ void chuta() {
             break;
         }
     }
+
     return achou;
+
 }
 
 void desenhaforca() {
@@ -46,12 +50,32 @@ void desenhaforca() {
                 printf("_ ");
             }
         }
+        
         printf("\n");
 
 }
 
 void escolhepalavra() {
-    sprintf(palavrasecreta, "MELANCIA");
+    FILE* f;
+    
+    f = fopen("palavras.txt", "r");
+    if (f == 0){
+        printf("Erro ao abrir o arquivo de palavras!\n\n");
+        exit(1);
+    }
+
+    int qtddepalavras;
+    fscanf(f, "%d", &qtddepalavras);
+
+    srand(time(0));
+    int randomico = rand() % qtddepalavras;
+
+    for (int i = 0; i <= randomico; i++) {
+        fscanf(f, "%s", palavrasecreta);
+    }
+
+    fclose(f);
+
 }
 
 int enforcou() {
@@ -84,7 +108,9 @@ int acertou () {
             return 0; // Ainda tem letra não chutada, o jogador não ganhou
         }
     }
+
     return 1; // Todas as letras foram chutadas, o jogador ganhou
+
 }
 
 int main() {
