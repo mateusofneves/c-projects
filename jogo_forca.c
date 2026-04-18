@@ -1,14 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-
-//funcoes
-void abertura();
-void chuta();
-void desenhaforca();
-void escolhepalavra();
-int enforcou();
-int acertou();
-int jachutou(char letra);
+#include "jogo_forca.h"
 
 //variáveis globais
 char palavrasecreta[20];
