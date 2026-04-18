@@ -2,17 +2,17 @@
 #include <string.h>
 
 void abertura() {
-    printf("/****************/\n");
-    printf("/ Jogo de Forca */\n");
-    printf("/****************/\n\n");
+    printf("*********************\n");
+    printf("*   Jogo de Forca   *\n");
+    printf("*********************\n\n");
 }
 
-void chuta(char chutes[], int* tentativas) {
+void chuta(char chutes[26], int tentativas) {
     char chute;
     scanf(" %c", &chute);
 
-    chutes[*tentativas] = chute;
-    (*tentativas)++;
+    chutes[tentativas] = chute;
+    (tentativas)++;
 }
 
 int main() {
@@ -50,7 +50,7 @@ int main() {
         printf("\n");
 
         //chamando a função de chute para ler o chute do usuário e armazenar no array de chutes
-        chuta(chutes, &tentativas);
+        chuta(chutes, tentativas);
 
     } while (!acertou && !enforcou);
 
