@@ -1,25 +1,29 @@
 #include <stdio.h>
 #include <string.h>
 
+char palavrasecreta[20];
+char chutes[26];
+int tentativas = 0;
+
 void abertura() {
     printf("*********************\n");
     printf("*   Jogo de Forca   *\n");
     printf("*********************\n\n");
 }
 
-void chuta(char chutes[26], int* tentativas) {
+void chuta() {
     char chute;
     scanf(" %c", &chute);
 
-    chutes[(*tentativas)] = chute;
-    (*tentativas)++;
+    chutes[(tentativas)] = chute;
+    (tentativas)++;
 }
 
- int jachutou(char letra, char chutes[26], int* tentativas) {
+ int jachutou(char letra) {
     
     int achou = 0;
 
-    for(int j = 0; j < *tentativas; j++) {
+    for(int j = 0; j < tentativas; j++) {
         if(chutes[j] == letra) {
             achou = 1;
             break;
@@ -28,25 +32,11 @@ void chuta(char chutes[26], int* tentativas) {
     return achou;
 }
 
-int main() {
+void desenhaforca() {
 
-    char palavrasecreta[20];
-    sprintf(palavrasecreta, "MELANCIA");
+    for(int i = 0; i < strlen(palavrasecreta); i++) {
 
-    int acertou = 0;
-    int enforcou = 0;
-
-    char chutes[26];
-    int tentativas = 0;
-
-    //chamando a função de abertura para exibir a mensagem de boas-vindas
-    abertura();
-
-    do {
-
-        for(int i = 0; i < strlen(palavrasecreta); i++) {
-
-            int achou = jachutou(palavrasecreta[i], chutes, &tentativas);
+            int achou = jachutou(palavrasecreta[i]);
 
             if(achou) {
                 printf("%c ", palavrasecreta[i]);
@@ -56,8 +46,24 @@ int main() {
         }
         printf("\n");
 
-        //chamando a função de chute para ler o chute do usuário e armazenar no array de chutes
-        chuta(chutes, &tentativas);
+}
+
+void escolhepalavra() {
+    sprintf(palavrasecreta, "MELANCIA");
+}
+
+int main() {
+
+    int acertou = 0;
+    int enforcou = 0;
+
+    escolhepalavra();
+    abertura();
+
+    do {
+
+        desenhaforca();
+        chuta();
 
     } while (!acertou && !enforcou);
 
