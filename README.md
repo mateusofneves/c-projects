@@ -4,11 +4,13 @@ Repositório com alguns projetos feitos em C para praticar.
 
 ## Projetos
 
-- Jogo de Adivinhação  
+- Jogo de adivinhação  
 - Tabuada  
 - Multiplicação  
 - Soma de 0 a 100
-- Sistema de Notas
+- Sistema de notas
+- Calculadora de potência
+- Jogo da forca
   
 ## Tecnologias
 - Linguagem C
