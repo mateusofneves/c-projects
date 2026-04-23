@@ -66,20 +66,19 @@ int recarga_celular(int *tipo, char id[], float *valor, int *tempo, char operado
         case 2: *valor = 10; break;
         case 3: *valor = 20; break;
         case 4: *valor = 30; break;
-        case 5: *valor = 40; break;
-        case 6: *valor = 50; break;
+        case 5: *valor = 50; break;
         default:
             printf("Valor invalido.\n");
             return 1;
     }
 
-    printf("Digite o tempo de recarga (em horas): ");
-    scanf("%d", tempo);
-
     if (*valor <= 0) {
         printf("Valor de recarga invalido. A recarga nao foi realizada.\n");
         return 1; // Retorna 1 para indicar que a recarga não foi realizada devido a um valor inválido
     }
+
+    printf("Digite o tempo de recarga (em horas): ");
+    scanf("%d", tempo);
 
     if (*tempo <= 0) {
         printf("Tempo de recarga invalido. A recarga nao foi realizada.\n");
@@ -120,20 +119,19 @@ int recarga_cartao_transporte(int *tipo, char id[], float *valor, int *tempo) {
         case 2: *valor = 10; break;
         case 3: *valor = 20; break;
         case 4: *valor = 30; break;
-        case 5: *valor = 40; break;
-        case 6: *valor = 50; break;
+        case 5: *valor = 50; break;
         default:
             printf("Valor invalido.\n");
             return 1;
     }
 
-    printf("Digite o tempo de recarga (em horas): ");
-    scanf("%d", tempo);
-
     if (*valor <= 0) {
         printf("Valor de recarga invalido. A recarga nao foi realizada.\n");
         return 1; // Retorna 1 para indicar que a recarga não foi realizada devido a um valor inválido
     }
+
+    printf("Digite o tempo de recarga (em horas): ");
+    scanf("%d", tempo);
 
     if (*tempo <= 0) {
         printf("Tempo de recarga invalido. A recarga nao foi realizada.\n");
@@ -150,7 +148,7 @@ int recarga_cartao_transporte(int *tipo, char id[], float *valor, int *tempo) {
 }
 
 // ===== RELATÓRIO =====
-void relatorio(int tipos[MAX_RECARGAS], char ids[][20], float valores[], int tempos[], int total) {
+void relatorio(int tipos[], char ids[][20], char operadoras[][20], float valores[], int tempos[], int total) {
     
     if (total == 0) {
         printf("\nNenhuma recarga foi registrada ainda.\n");
@@ -170,6 +168,7 @@ void relatorio(int tipos[MAX_RECARGAS], char ids[][20], float valores[], int tem
         }
 
         printf("ID: %s\n", ids[i]);
+        printf("Operadora: %s\n", (tipos[i] == 1) ? operadoras[i] : "N/A"); // Exibe a operadora apenas para recargas de celular
         printf("Valor: R$%.2f\n", valores[i]);
 
         float potencia = 0.5; // Simulação de potência para cálculo de energia
@@ -265,7 +264,7 @@ int main() {
                 break;
 
             case 3:
-                relatorio(tipos, ids, valores, tempos, total_recargas);
+                relatorio(tipos, ids, operadoras, valores, tempos, total_recargas);
                 break;
                 
             case 4:
