@@ -27,10 +27,10 @@ O código foi organizado em funções para melhor legibilidade e manutenção.
 
 O menu permite ao usuário escolher entre:
 
-- 📱 Recarga de celular  
-- 🚌 Recarga de cartão de transporte  
-- 📊 Relatório geral de recargas  
-- 🚪 Sair do programa  
+- Recarga de celular  
+- Recarga de cartão de transporte  
+- Relatório geral de recargas  
+- Sair do programa  
 
 ---
 
