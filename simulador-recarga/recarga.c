@@ -15,14 +15,63 @@ void menu () {
 }
 
 // ===== RECARGA CELULAR =====
-int recarga_celular(int *tipo, char id[], float *valor, int *tempo) {
+int recarga_celular(int *tipo, char id[], float *valor, int *tempo, char operadora[]) {
+    
     *tipo = 1;
+
+    printf("\n");
+
+    printf("Escolha sua operadora: \n");
+    printf("1. Claro\n");
+    printf("2. Vivo\n");
+    printf("3. Tim\n");
+    printf("4. Oi\n");
+    int op;
+    printf("Opcao: ");
+    scanf("%d", &op);
+
+    switch(op) {
+    case 1:
+        strcpy(operadora, "Claro");
+        break;
+    case 2:
+        strcpy(operadora, "Vivo");
+        break;
+    case 3:
+        strcpy(operadora, "Tim");
+        break;
+    case 4:
+        strcpy(operadora, "Oi");
+        break;
+    default:
+        printf("Operadora invalida.\n");
+        return 1;
+    }
 
     printf("Digite o numero do celular: ");
     scanf("%s", id);
 
-    printf("Digite o valor da recarga: ");
-    scanf("%f", valor);
+    printf("Escolha o valor da recarga: \n");
+    printf("1. R$5\n");
+    printf("2. R$10\n");
+    printf("3. R$20\n");
+    printf("4. R$30\n");
+    printf("5. R$50\n");
+    int op_valor;
+    printf("Opcao: ");
+    scanf("%d", &op_valor);
+
+    switch(op_valor) {
+        case 1: *valor = 5; break;
+        case 2: *valor = 10; break;
+        case 3: *valor = 20; break;
+        case 4: *valor = 30; break;
+        case 5: *valor = 40; break;
+        case 6: *valor = 50; break;
+        default:
+            printf("Valor invalido.\n");
+            return 1;
+    }
 
     printf("Digite o tempo de recarga (em horas): ");
     scanf("%d", tempo);
@@ -39,7 +88,7 @@ int recarga_celular(int *tipo, char id[], float *valor, int *tempo) {
 
     printf("Recarga de R$%.2f para o numero %s realizada com sucesso!\n", *valor, id);
 
-    printf("Deseja realizar outra recarga? (S/N): ");
+    printf("Deseja voltar ao menu? (S/N): ");
     char resposta;
     scanf(" %c", &resposta);
 
@@ -48,13 +97,35 @@ int recarga_celular(int *tipo, char id[], float *valor, int *tempo) {
 
 // ===== RECARGA TRANSPORTE =====
 int recarga_cartao_transporte(int *tipo, char id[], float *valor, int *tempo) {
+    
     *tipo = 2;
+
+    printf("\n");
 
     printf("Digite o numero do cartao: ");
     scanf("%s", id);
 
-    printf("Digite o valor da recarga: ");
-    scanf("%f", valor);
+    printf("Escolha o valor da recarga: \n");
+    printf("1. R$5\n");
+    printf("2. R$10\n");
+    printf("3. R$20\n");
+    printf("4. R$30\n");
+    printf("5. R$50\n");
+    int op_valor;
+    printf("Opcao: ");
+    scanf("%d", &op_valor);
+
+    switch(op_valor) {
+        case 1: *valor = 5; break;
+        case 2: *valor = 10; break;
+        case 3: *valor = 20; break;
+        case 4: *valor = 30; break;
+        case 5: *valor = 40; break;
+        case 6: *valor = 50; break;
+        default:
+            printf("Valor invalido.\n");
+            return 1;
+    }
 
     printf("Digite o tempo de recarga (em horas): ");
     scanf("%d", tempo);
@@ -71,7 +142,7 @@ int recarga_cartao_transporte(int *tipo, char id[], float *valor, int *tempo) {
 
     printf("Recarga de R$%.2f para o cartao %s realizada com sucesso!\n", *valor, id);
 
-    printf("Deseja realizar outra recarga? (S/N): ");
+    printf("Deseja voltar ao menu? (S/N): ");
     char resposta;
     scanf(" %c", &resposta);
 
@@ -102,8 +173,8 @@ void relatorio(int tipos[MAX_RECARGAS], char ids[][20], float valores[], int tem
         printf("Valor: R$%.2f\n", valores[i]);
 
         float potencia = 0.5; // Simulação de potência para cálculo de energia
+        float tarifa = 0.8; // Simulação de tarifa para cálculo de custo (quanto custa 1 kwh)
         float energia = potencia * tempos[i]; // Cálculo de energia com base na potência e tempo
-        float tarifa = 0.8; // Simulação de tarifa para cálculo de custo
         float custo = energia * tarifa; // Cálculo de custo com base na energia consumida
 
         energia_total += energia; // Acumula a energia total
@@ -116,15 +187,15 @@ void relatorio(int tipos[MAX_RECARGAS], char ids[][20], float valores[], int tem
 
         printf("\n--- CUSTOS ---\n");
         printf("Tarifa: R$ %.2f/kWh\n", tarifa);
-        printf("Custo total: R$ %.2f\n", custo);
+        printf("Custo energia consumida: R$ %.2f\n", custo);
 
-        printf("===============================\n");
+        printf("===============================");
 
     }
 
     printf("\n--- Total Geral ---\n");
     printf("Energia total: %.2f kWh\n", energia_total);
-    printf("Custo total: R$ %.2f\n", custo_total);
+    printf("Custo energia consumida: R$ %.2f\n", custo_total);
 }
 
 // ===== MAIN =====
@@ -139,6 +210,7 @@ int main() {
     int tipos[MAX_RECARGAS];
     int tempos[MAX_RECARGAS];
     char ids[MAX_RECARGAS][20];
+    char operadoras[MAX_RECARGAS][20];
     float valores[MAX_RECARGAS];
 
     int total_recargas = 0;
@@ -158,7 +230,7 @@ int main() {
         switch (opcao) {
 
             case 1:
-                continuar = recarga_celular(&tipo, id, &valor, &tempo);
+                continuar = recarga_celular(&tipo, id, &valor, &tempo, operadoras[total_recargas]);
                 if (valor > 0 && tempo > 0 && total_recargas < MAX_RECARGAS) {
 
                 tipos[total_recargas] = tipo;
