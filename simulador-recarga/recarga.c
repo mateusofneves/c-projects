@@ -95,11 +95,28 @@ int recarga_celular(int *tipo, char id[], float *valor, int *tempo, char operado
 }
 
 // ===== RECARGA TRANSPORTE =====
-int recarga_cartao_transporte(int *tipo, char id[], float *valor, int *tempo) {
+int recarga_cartao_transporte(int *tipo, char id[], float *valor, int *tempo, char tipos_cartao[][20], int total) {
     
     *tipo = 2;
 
     printf("\n");
+
+    printf("Escolha o tipo do cartao de transporte: \n");
+    printf("1. Cartao de onibus\n");
+    printf("2. Cartao de metro\n");
+    printf("3. Cartao de trem\n");
+    int op_cartao;
+    printf("Opcao: ");
+    scanf("%d", &op_cartao);
+
+    switch(op_cartao) {
+        case 1: strcpy(tipos_cartao[total], "Cartao de onibus"); break;
+        case 2: strcpy(tipos_cartao[total], "Cartao de metro"); break;
+        case 3: strcpy(tipos_cartao[total], "Cartao de trem"); break;
+        default: 
+            printf("Tipo de cartao invalido.\n"); 
+            return 1;
+    }
 
     printf("Digite o numero do cartao: ");
     scanf("%s", id);
@@ -148,7 +165,7 @@ int recarga_cartao_transporte(int *tipo, char id[], float *valor, int *tempo) {
 }
 
 // ===== RELATÓRIO =====
-void relatorio(int tipos[], char ids[][20], char operadoras[][20], float valores[], int tempos[], int total) {
+void relatorio(int tipos[], char ids[][20], char operadoras[][20], float valores[], int tempos[], char tipos_cartao[][20], int total) {
     
     if (total == 0) {
         printf("\nNenhuma recarga foi registrada ainda.\n");
@@ -169,6 +186,7 @@ void relatorio(int tipos[], char ids[][20], char operadoras[][20], float valores
 
         printf("ID: %s\n", ids[i]);
         printf("Operadora: %s\n", (tipos[i] == 1) ? operadoras[i] : "N/A"); // Exibe a operadora apenas para recargas de celular
+        printf("Tipo de Cartao: %s\n", (tipos[i] == 2) ? tipos_cartao[i] : "N/A"); // Exibe o tipo de cartão apenas para recargas de cartão de transporte
         printf("Valor: R$%.2f\n", valores[i]);
 
         float potencia = 0.5; // Simulação de potência para cálculo de energia
@@ -211,6 +229,7 @@ int main() {
     char ids[MAX_RECARGAS][20];
     char operadoras[MAX_RECARGAS][20];
     float valores[MAX_RECARGAS];
+    char tipos_cartao[MAX_RECARGAS][20];
 
     int total_recargas = 0;
 
@@ -247,7 +266,7 @@ int main() {
                 break;
 
             case 2:
-                continuar = recarga_cartao_transporte(&tipo, id, &valor, &tempo);
+                continuar = recarga_cartao_transporte(&tipo, id, &valor, &tempo, tipos_cartao, total_recargas);
                 if (valor > 0 && tempo > 0 && total_recargas < MAX_RECARGAS) {
 
                     tipos[total_recargas] = tipo;
@@ -264,7 +283,7 @@ int main() {
                 break;
 
             case 3:
-                relatorio(tipos, ids, operadoras, valores, tempos, total_recargas);
+                relatorio(tipos, ids, operadoras, valores, tempos, tipos_cartao, total_recargas);
                 break;
                 
             case 4:
