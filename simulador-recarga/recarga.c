@@ -251,13 +251,12 @@ int main() {
                 continuar = recarga_celular(&tipo, id, &valor, &tempo, operadoras[total_recargas]);
                 if (valor > 0 && tempo > 0 && total_recargas < MAX_RECARGAS) {
 
-                tipos[total_recargas] = tipo;
-                tempos[total_recargas] = tempo;
-                strcpy(ids[total_recargas], id);
-                valores[total_recargas] = valor;
+                    tipos[total_recargas] = tipo;
+                    tempos[total_recargas] = tempo;
+                    strcpy(ids[total_recargas], id);
+                    valores[total_recargas] = valor;
 
-                total_recargas++;
-
+                    total_recargas++;
                 } else {
                     printf("\nLimite de recargas atingido!\n");
                 }
