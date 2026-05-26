@@ -40,6 +40,13 @@ missao_espacial/
 │
 ├── .gitignore
 │
+├── assets/
+│   └── print1
+│   └── print2
+│   └── print3
+│   └── print4
+│   └── print5
+│
 ├── fluxograma/
 │   └── fluxograma_missao.drawio.png
 │
