@@ -38,11 +38,29 @@ void inserirDados() {
     printf("Digite a temperatura da nave: ");
     scanf("%f", &temperatura);
 
-    printf("Digite a porcentagem de energia: ");
+    do {
+
+    printf("Digite a porcentagem de energia (0 a 100): ");
     scanf("%f", &energia);
+
+    if (energia < 0 || energia > 100) {
+
+        printf("\nValor invalido! Digite entre 0 e 100.\n\n");
+    }
+
+} while (energia < 0 || energia > 100);
+
+    do {
 
     printf("Status da comunicacao (1 = OK / 0 = FALHA): ");
     scanf("%d", &comunicacao);
+
+    if (comunicacao != 0 && comunicacao != 1) {
+
+        printf("\nValor invalido! Digite apenas 0 ou 1.\n\n");
+    }
+
+} while (comunicacao != 0 && comunicacao != 1);
 
     if (total_missoes < MAX_MISSOES) {
 
@@ -135,7 +153,7 @@ void mostrarHistorico() {
         printf("MISSAO %d\n", i + 1);
         printf("=====================================\n");
 
-        printf("Temperatura: %.2f °C\n", temperaturas[i]);
+        printf("Temperatura: %.2f C\n", temperaturas[i]);
         printf("Energia: %.2f%%\n", energias[i]);
 
         if (comunicacoes[i] == 1) {

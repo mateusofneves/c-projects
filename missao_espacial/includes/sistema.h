@@ -20,5 +20,6 @@ void inserirDados();
 void visualizarStatus();
 void analisarSistema();
 void mostrarHistorico();
+void pausarSistema();
 
 #endif
