@@ -41,7 +41,7 @@ missao_espacial/
 ├── .gitignore
 │
 ├── fluxograma/
-│   └── fluxograma.png
+│   └── fluxograma_missao.drawio.png
 │
 ├── includes/
 │   └── sistema.h
