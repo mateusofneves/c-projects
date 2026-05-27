@@ -4,6 +4,7 @@ Repositório com alguns projetos feitos em C para praticar.
 
 ## Projetos
 
+- Projeto Missão Espacial
 - Jogo de adivinhação  
 - Tabuada  
 - Multiplicação  
